@@ -1,244 +1,99 @@
-# Iniciando Servidor com Node.js
+# On16-TodasEmTech-S8-API-Get-Post
 
-1. Crie a pasta em que ficará seu servidor
+## Turma Online Todas em Tech - Back-end | Semana 8: Primeiro Servidor API - GET - POST
 
-    Dentro da sua pasta crie os arquivos referentes ao servidor, app, rotas, controller e model, como no exemplo:
+### Assuntos falado em sala: 
 
-    ```bash
-    \--📂 NOME-DO-SEU-SERVIDOR
-    	   |   server.js
-    	   |
-    		\--📂src
-    			    |   app.js
-    			    |
-    			    📂---controller
-    			    |       NOMEController.js
-    			    |
-    			    📂---model
-    			    |       NOME.json
-    			    |
-    			    📂---routes
-    			            NOMERoute.js
-    ```
+## 📝 Protocolo HTTP e Verbos;
+## 📝 CRUD;
+## 📝 API;
+## 📝 GET && POST; 
+## 📝 Postman;
+## 📝 Criando o Server;
 
-2. Pelo terminal entre em sua pasta referente ao Servidor, como no exemplo:
+ <img src="https://user-images.githubusercontent.com/100974682/169422619-b1a75081-5812-4455-b3ff-902cca30bb9d.jpg" alt="Gif Yeah" width="450">
 
-    ```bash
-    ~
-    $ cd Desktop/
-    ~/Desktop
-    $ cd NOME-DO-MEU-SERVIDOR
-    ~/Desktop/NOME-DO-MEU-SERVIDOR
-    $ ls
-    server.js  src/
-    ```
+## HTTP
 
-3. Inicie o git. (Se você preferir criar um repositório do [git](https://github.com/) e depois clonar, você pode pular essa etapa)
+Protocolo de Transferência de Hipertexto é um protocolo usado dentro do modelo Client/Server é baseado em pedidos (requests) e respostas (responses).
+Ele é a forma em que o Cliente e o Servidor se comunicam. 
 
-    ```bash
-    ~/Desktop/NOME-DO-MEU-SERVIDOR
-    $ git init
-    Initialized empty Git repository in 
-    C:/Users/Mayhhara/Desktop/NOME-DO-MEU-SERVIDOR/.git/
-    ~/Desktop/NOME-DO-MEU-SERVIDOR (master)
-    $
-    ```
+## HTTP - Verbos
 
-4. Inicie o seu projeto com o comando **npm init**
+Os verbos HTTP são um conjunto de métodos de requisição responsáveis por indicar a ação a ser executada.
+O Client manda um request solicitando um dos verbos e o Server deve estar preparado para receber e responde-lo com um response.
 
-    ```bash
-    @DESKTOP MINGW64 ~/Desktop/NOME-DO-MEU-SERVIDOR (master)
-    $ npm init
-    This utility will walk you through creating a package.json file.
-    It only covers the most common items, and tries to guess sensible defaults.
-    See `npm help init` for definitive documentation on these fields
-    and exactly what they do.
-    Use `npm install <pkg>` afterwards to install a package and
-    save it as a dependency in the package.json file.
-    Press ^C at any time to quit.
-    package name: (NOME-DO-MEU-SERVIDOR) Escreva aqui o nome 
-    version: (1.0.0)
-    description: escreva uma curta descrição 
-    entry point: (server.js)
-    test command:
-    git repository: se não vir automaticamente, coloque o link do repositório
-    keywords:
-    author: mayhhara morais
-    license: (ISC)
-    About to write to C:\Users\Mayhhara\Desktop\NOME-DO-MEU-SERVIDOR\package.json:
-    {
-      "name": "servidor",
-      "version": "1.0.0",
-      "description": "servidor para aula de backend da reprograma",
-      "main": "server.js",
-      "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-      },
-      "repository": {
-        "type": "git",
-        "url": "meugit"
-      },
-      "author": "mayhhara morais",
-      "license": "ISC"
-    }
-    Is this OK? (yes) yes
-    ```
+## HTTP - CRUD
+CRUD é a composição da primeira letra de quatro operações básicas de um banco de dados, e são o que a maioria das aplicações fazem.
 
-5. Repare que será criado um arquivo novo dentro do seu projeto, o package.json:
+ - C: Create (criar) - criar um novo registro
 
-    ```bash
-    ~/Desktop/NOME-DO-MEU-SERVIDOR (master)
-    $ ls
-    package.json server.js  src/
-    ```
+- R: Read (ler) - exibir as informações de um registro
 
-    O arquivo package.json é o ponto de partida de qualquer projeto NodeJS. Ele é responsável por descrever o seu projeto, informar a versão do node e do npm, url do repositório, versão do projeto, dependências de produção e de desenvolvimento dentre outras coisas.
+- U: Update (atualizar) - atualizar os dados do registro
 
-    E dentro do seu projeto o package.json vai estar mais ou menos assim:
+- D: Delete (apagar) - apagar um registro
 
-    ```jsx
-    {
-      "name": "servidor",
-      "version": "1.0.0",
-      "description": "servidor para aula de backend da reprograma",
-      "main": "server.js",
-      "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-      },
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/reprograma/On16-TodasEmTech-S8-API-Get-Post"
-      },
-      "author": "mayhhara morais",
-      "license": "ISC"
-    }
-    ```
+## API
+API busca criar formas e ferramentas de se usar uma funcionalidade ou uma informação sem realmente ter que ''reinventar a tal função''.
 
-6. Instale alguns pacotes de dependências importantes para o projeto. 
+Ela não necessariamente está num link na Web, ela pode ser uma lib ou um framework, uma função já pronta em uma linguagem específica por exemplo.
 
-    O primeiro é o [nodemon](https://www.npmjs.com/package/nodemon), que nos ajuda restartando nosso servidor automaticamente toda vez que fizermos uma modificação no nosso projeto, para instala-la coloque no seu terminal o comando **npm install nodemon** a resposta será a seguinte:
+## MÉTODO GET
 
-    ```bash
-    ~/Desktop/NOME-DO-MEU-SERVIDOR (master)
-    $ npm install nodemon
-    ```
+Usamos GET para ler ou recuperar um recurso. Um GET bem-sucedido retorna uma resposta contendo as informações solicitadas.
 
-    Em seguida instale o [express](https://www.npmjs.com/package/express), ele é nos ajuda a criar e gerenciar as chamadas HTTP e montar o servidor com mais facilidade. Para instala-lo você deve colocar no seu terminal o comando **npm install express** a resposta será a seguinte:
+Em nossa biblioteca, poderíamos usar um GET para recuperar livros escritos por um autor específico.
 
-    ```bash
-    ~/Desktop/NOME-DO-MEU-SERVIDOR (master)
-    $ npm install express
-    ```
+**_GET /autor/:idautor/livros_**
 
-    Perceba que agora no seu package.json tem algumas novas linhas que indicam as dependências usadas e necessárias para o seu projeto:
+## MÉTODO POST
+Usamos POST para criar um novo recurso. Uma solicitação POST requer um corpo no qual você define os dados da entidade a ser criada.
 
-    ```jsx
-    {
-      "name": "servidor",
-      "version": "1.0.0",
-      "description": "servidor para aula de backend da reprograma",
-      "main": "server.js",
-      "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-      },
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/reprograma/On16-TodasEmTech-S8-API-Get-Post"
-      },
-      "author": "mayhhara morais",
-      "license": "ISC",
-      "dependencies": {
-    		"express": "^4.17.1",
-        "nodemon": "^2.0.4"
-      }
-    }
-    ```
+Uma solicitação POST bem-sucedida seria um código de resposta 200. Em nossa biblioteca, poderíamos usar um método POST para adicionar um livro.
 
-    Perceba também que um novo arquivo foi criado o package-lock.json e uma nova pasta a node_modules:
+### **_POST /livros_**
+```
+{ "id": idDoNossoLivro,
 
-    ```bash
-    ~/Desktop/NOME-DO-MEU-SERVIDOR (master)
-    $ ls
-    node_modules/  package.json  package-lock.json server.js  src/
-    ```
+   "title": "tituloLivro",
 
-    Sempre que você instalar um pacote do npm, ele será referenciado no package-lock.json e será instalado na pasta node_modules. 
+    "autor": "autorLivro"
 
-    Na node_modules estarão baixadas as dependências que o seus pacotes precisarão pra funcionar e o package-lock especifica a versão e suas dependências próprias, assim, a instalação criada será sempre a mesma, toda vez.
+   "description": "descricaoLivro"
 
-7. Dentro do projeto, crie o arquivo **.gitignore** e adicione a node_modules. Dentro do .gitignore ficará assim:
+}
 
-    ```jsx
-    node_modules/
-    ```
+```
 
-    Nós ignoramos a node_modules pois nela estão todos os downloads de todas as dependências do projeto, se apagarmos ela só precisamos dar o comando **npm install** que as dependências serão baixadas de novo e pasta node_modules reaparecerá. 
-    O npm sabe quais dependências baixar pois elas estão referenciadas no package.json e no package-lock.json.
+## Postman
 
-8. Agora você terá essa organização de pastas:
+O Postman é um API Client que facilita aos desenvolvedores criar, compartilhar, testar e documentar APIs. Isso é feito, permitindo aos usuários criar e salvar solicitações HTTP e HTTPs simples e complexas, bem como ler suas respostas.
 
-    ```bash
-    \--📂 NOME-DO-SEU-SERVIDOR
-    		 \--📂 node_modules
-    		 |   .gitignore
-    		 |   package-lock.json
-    		 |   package.json
-    	   |   server.js
-    		 |
-    			\--📂src
-    			    |   
-    			    |
-    			    📂---controller
-    			    |       NOMEController.js
-    			    |
-    			    📂---model
-    			    |       NOME.json
-    			    |
-    			    📂---routes
-    			            NOMERoute.js
-    ```
+## Criando o meu Server
 
-9.  Procure dentro do seu package.json a chave **"scripts"**, nela são colocados os comando e suas ações. Verifique se existe o comando **"start"**, caso não, adicione o start do server pelo nodemon, dessa forma:
+ <img src="https://user-images.githubusercontent.com/100974682/169424271-dfb902c0-90e2-409c-9331-5543258b7cae.jpg" alt="Gif Yeah" width="240">
 
-    ```jsx
-    {
-      "name": "servidor",
-      "version": "1.0.0",
-      "description": "servidor para aula de backend da reprograma",
-      "main": "server.js",
-      "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-    		**"start": "nodemon server.js"**
-      },
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/reprograma/On16-TodasEmTech-S8-API-Get-Post"
-      },
-      "author": "mayhhara morais",
-      "license": "ISC",
-      "dependencies": {
-    		"express": "^4.17.1",
-        "nodemon": "^2.0.4"
-      }
-    }
-    ```
+## Conclusão:
 
-10. Agora pode começar a codar seu servidor!
-11. Para iniciar o seu servidor, é só rodar o comando **npm start 🚀**
+Se você está se perguntando o que é API, em uma definição formal, o conceito de API está relacionado a um conjunto de rotinas e padrões estabelecidos por um software para a utilização das suas funcionalidades por outros aplicativos.
 
-APRESENTAÇÃO DISPONÍVEL [AQUI](https://www.canva.com/design/DAFAa10ou9E/n47IbPs7FzriMdUJZIqNNw/view?utm_content=DAFAa10ou9E&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+O conceito de API nada mais é do que uma forma de comunicação entre sistemas. Elas permitem a integração entre dois sistemas, em que um deles fornece informações e serviços que podem ser utilizados pelo outro, sem a necessidade de o sistema que consome a API conhecer detalhes de implementação do software.
 
-### Fontes: 
+_Metaforicamente, podemos pensar no que é API como um garçom. Quando estamos em um restaurante, buscamos o que desejamos no menu e solicitamos ao garçom. O garçom encaminha esse pedido à cozinha, que prepara o pedido. No fim, o garçom traz o prato pronto até a gente. Não temos detalhes de como esse prato foi preparado, apenas recebemos o que solicitamos._
 
-- [https://medium.com/xp-inc/criando-uma-api-node-em-10-passos-com-express-js-52b2d612a8a9](https://medium.com/xp-inc/criando-uma-api-node-em-10-passos-com-express-js-52b2d612a8a9)
-- [https://dev.to/santypk4/bulletproof-node-js-project-architecture-4epf](https://dev.to/santypk4/bulletproof-node-js-project-architecture-4epf)
-- [https://medium.com/@diomalta/como-organizar-e-estruturar-projetos-com-node-js-4845be004899](https://medium.com/@diomalta/como-organizar-e-estruturar-projetos-com-node-js-4845be004899)
 
-- [https://github.com/Edilainesds/On14-TodasEmTech-s9-API-DELETE-PUT-PATCH/blob/edilainesilva/material/crud.pdf] (https://github.com/Edilainesds/On14-TodasEmTech-s9-API-DELETE-PUT-PATCH/blob/edilainesilva/material/crud.pdf)
+ <img src="https://img.shields.io/badge/Status-Atividade%20Realizada%20S8--API--Get--Post-orange" alt="Gif Yeah" width="350">
 
-- [https://stackabuse.com/get-http-post-body-in-express-js/](https://stackabuse.com/get-http-post-body-in-express-js)
-- [https://www.digitalocean.com/community/tutorials/use-expressjs-to-get-url-and-post-parameters](https://www.digitalocean.com/community/tutorials/use-expressjs-to-get-url-and-post-parameters)
-- [https://medium.com/@febatista107/como-converter-os-dados-de-uma-requisi%C3%A7%C3%A3o-com-o-body-parser-2b5b93100f00](https://medium.com/@febatista107/como-converter-os-dados-de-uma-requisi%C3%A7%C3%A3o-com-o-body-parser-2b5b93100f00)
-- [https://flaviocopes.com/express-get-query-variables/](https://flaviocopes.com/express-get-query-variables/)
-- [https://docs.microsoft.com/pt-br/learn/modules/build-web-api-nodejs-express/4-route-management](https://docs.microsoft.com/pt-br/learn/modules/build-web-api-nodejs-express/4-route-management)
-- 
+
+![bebe](https://user-images.githubusercontent.com/100974682/167978711-3c0b4a06-6cd6-4c1f-99f5-19b62dd58fca.jpg)
+
+** Segue minhas redes sociais.**
+- [linkedin](https://www.linkedin.com/in/b%C3%A1rbara-gon%C3%A7alves-211b5691/)
+- [github](https://github.com/idbabis) 
+- e-mail: idbabis@gmail.com
+
+
+
+
+
